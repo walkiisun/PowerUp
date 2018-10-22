@@ -400,85 +400,85 @@ public class Robot extends IterativeRobot {
 	}
 public void imuRightTurn() {
 		
-		imuYaw = (imuTable.getEntry("yaw").getDouble(0));
-		if(i == 0) {
-			imuYawInitial = imuYaw;
-			if(imuYaw + 90 > 360) {
-				imuYawIdeal = imuYaw + 90 - 360;
+		imuYaw = (imuTable.getEntry("yaw").getDouble(0)); //set imu yaw to the current entry Yaw and set as double
+		if(i == 0) { //if i equals to 0
+			imuYawInitial = imuYaw; // set yaw initial to imu yaw
+			if(imuYaw + 90 > 360) { // if imu yaw plus 90 is greater than 360 
+				imuYawIdeal = imuYaw + 90 - 360; //then set ideal to current imy yaw + 90 - 360
 			}
-			else {
-				imuYawIdeal = imuYaw + 90;
+			else { // if not
+				imuYawIdeal = imuYaw + 90;//set yaw ideal to imu yaw + 90
 			}
 		}
-		else {}
+		else {} // if not
 		i++;
-		if(imuYaw >= imuYawIdeal -1 && imuYaw <= imuYawIdeal + 1) {
+		if(imuYaw >= imuYawIdeal -1 && imuYaw <= imuYawIdeal + 1) {// if the yaw is greater or equal to ideal yaw -1 and yaw is less than or equal to ideal + 1
 			leftMotor1.set(ControlMode.PercentOutput, 0);
 			leftMotor2.set(ControlMode.PercentOutput, 0);
-			rightMotor1.set(ControlMode.PercentOutput, 0);
+			rightMotor1.set(ControlMode.PercentOutput, 0);// the stop everything
 			rightMotor2.set(ControlMode.PercentOutput, 0);
 			Counter ++;
-			i = 0;
-			Timer.delay(.5);
+			i = 0;// set i as 0
+			Timer.delay(.5); // stop everything for .5 sec
 		}
 		else {
 			leftMotor1.set(ControlMode.PercentOutput, -0.1);
-			leftMotor2.set(ControlMode.PercentOutput, -0.1);
+			leftMotor2.set(ControlMode.PercentOutput, -0.1); // if not, set all motors to negative .1 percent
 			rightMotor1.set(ControlMode.PercentOutput, -0.1);
 			rightMotor2.set(ControlMode.PercentOutput, -0.1);
 		}
 	} 
 public void imuLeftTurn() {
 	
-	imuYaw = (imuTable.getEntry("yaw").getDouble(0));
-	if(i == 0) {
-		imuYawInitial = imuYaw;
-		if(imuYawInitial - 90 < 0) {
-			imuYawIdeal = imuYawInitial - 90 + 360;
+	imuYaw = (imuTable.getEntry("yaw").getDouble(0)); // set yaw equal to the current entry yaw data and set as a double
+	if(i == 0) { // if i == 0
+		imuYawInitial = imuYaw; // then set initial yaw as yaw
+		if(imuYawInitial - 90 < 0) { // if initial yaw - 90 is less than 0
+			imuYawIdeal = imuYawInitial - 90 + 360; // then ideal yaw is equal to inital yaw - 90 + 360
 		}
-		else {
-			imuYawIdeal = imuYawInitial - 90;
+		else { // if not
+			imuYawIdeal = imuYawInitial - 90; // then ideal yaw is equal to inital yaw - 90
 		}
 	}
-	else {}
+	else {} // if not
 	i++;
-	System.out.println("Initial: " + imuYawInitial);
-	System.out.println("Ideal: " + imuYawIdeal);
-	System.out.println("Current: " + imuYaw);
-	System.out.println("Difference: ");
-	if (imuYaw <= imuYawIdeal + 20 && imuYaw >= imuYawIdeal - 20) {
-		System.out.println("Within 20 degrees");
-		if(imuYaw <= imuYawIdeal + 15 && imuYaw >= imuYawIdeal - 15) {
-			System.out.println("Within 15 degrees");
-			if (imuYaw <= imuYawIdeal + 10 && imuYaw >= imuYawIdeal - 10) {
-				System.out.println("Within 10 degrees");
-				if (imuYaw <= imuYawIdeal + 5 && imuYaw >= imuYawIdeal - 5) {
-					System.out.println("Within 5 degrees");
-					if (imuYaw <= imuYawIdeal + 1 && imuYaw >= imuYawIdeal - 1) {
-						System.out.println("Within 1 degree");
-						leftMotor1.set(ControlMode.PercentOutput, 0);
+	System.out.println("Initial: " + imuYawInitial); // print out initial plus yaw initial
+	System.out.println("Ideal: " + imuYawIdeal); // print out ideal plus ideal yaw
+	System.out.println("Current: " + imuYaw); //print out current as imu yaw
+	System.out.println("Difference: "); // print difference
+	if (imuYaw <= imuYawIdeal + 20 && imuYaw >= imuYawIdeal - 20) { // if yaw is less that or equal to ideal yaw + 20 and imu yaw is greater than or equal to ideal yaw -20
+		System.out.println("Within 20 degrees"); //print within 20 degrees to array
+		if(imuYaw <= imuYawIdeal + 15 && imuYaw >= imuYawIdeal - 15) { // if yaw is less that or equal to ideal yaw + 15 and imu yaw is greater than or equal to ideal yaw -15
+			System.out.println("Within 15 degrees"); // print within 15 degree to array
+			if (imuYaw <= imuYawIdeal + 10 && imuYaw >= imuYawIdeal - 10) { // if yaw is less that or equal to ideal yaw + 10 and imu yaw is greater than or equal to ideal yaw -10 
+				System.out.println("Within 10 degrees"); // print within 10 degree to array
+				if (imuYaw <= imuYawIdeal + 5 && imuYaw >= imuYawIdeal - 5) { // if yaw is less that or equal to ideal yaw + 5 and imu yaw is greater than or equal to ideal yaw -5
+					System.out.println("Within 5 degrees"); // print within 5 degree to array
+					if (imuYaw <= imuYawIdeal + 1 && imuYaw >= imuYawIdeal - 1) { // if yaw is less that or equal to ideal yaw + 1 and imu yaw is greater than or equal to ideal yaw -1
+						System.out.println("Within 1 degree"); // print within 1 degree to array
+						leftMotor1.set(ControlMode.PercentOutput, 0); //then stop all systems
 						leftMotor2.set(ControlMode.PercentOutput, 0);
 						rightMotor1.set(ControlMode.PercentOutput, 0);
 						rightMotor2.set(ControlMode.PercentOutput, 0);
 						
 						Counter ++;
 						i = 0;
-						Timer.delay(.5);
+						Timer.delay(.5); // stop everything for .5 secs
 					} else {
-						leftMotor1.set(ControlMode.PercentOutput, 0.06);
+						leftMotor1.set(ControlMode.PercentOutput, 0.06); //set all motors to 6%
 						leftMotor2.set(ControlMode.PercentOutput, 0.06);
 						rightMotor1.set(ControlMode.PercentOutput, 0.06);
 						rightMotor2.set(ControlMode.PercentOutput, 0.06);
 					}
 				} else {
 					leftMotor1.set(ControlMode.PercentOutput, 0.07);
-					leftMotor2.set(ControlMode.PercentOutput, 0.07);
+					leftMotor2.set(ControlMode.PercentOutput, 0.07); //set all motors to 7%
 					rightMotor1.set(ControlMode.PercentOutput, 0.07);
 					rightMotor2.set(ControlMode.PercentOutput, 0.07);
 				}
 			} else {
 				leftMotor1.set(ControlMode.PercentOutput, 0.08);
-				leftMotor2.set(ControlMode.PercentOutput, 0.08);
+				leftMotor2.set(ControlMode.PercentOutput, 0.08); //set all motors to 8%
 				rightMotor1.set(ControlMode.PercentOutput, 0.08);
 				rightMotor2.set(ControlMode.PercentOutput, 0.08);
 			}
@@ -486,13 +486,13 @@ public void imuLeftTurn() {
 		else {
 			leftMotor1.set(ControlMode.PercentOutput, 0.09);
 			leftMotor2.set(ControlMode.PercentOutput, 0.09);
-			rightMotor1.set(ControlMode.PercentOutput, 0.09);
+			rightMotor1.set(ControlMode.PercentOutput, 0.09);//set all motors to 9%
 			rightMotor2.set(ControlMode.PercentOutput, 0.09);
 		}
 	} else {
 		leftMotor1.set(ControlMode.PercentOutput, 0.1);
 		leftMotor2.set(ControlMode.PercentOutput, 0.1);
-		rightMotor1.set(ControlMode.PercentOutput, 0.1);
+		rightMotor1.set(ControlMode.PercentOutput, 0.1);//set all motors to 10%
 		rightMotor2.set(ControlMode.PercentOutput, 0.1);
 	}
 }
@@ -812,55 +812,55 @@ public void imuLeftTurn() {
 		  }
 	
 	public void imuDriveStraight(int length) {
-		imuYaw = imuTable.getEntry("yaw").getDouble(0);
-		if(i == 0) {
-			imuYawInitial = imuYaw;
+		imuYaw = imuTable.getEntry("yaw").getDouble(0); // Get the yaw and set imuYaw as the double
+		if(i == 0) { // if i equals 0
+			imuYawInitial = imuYaw; //then set initial yaw to imu yaw
 		}
-		else {}
+		else {} //if not then
 		i++;
-		double leftCount = leftEncoder.get();
-		double rightCount = rightEncoder.get();
-		System.out.println("Initial: " + imuYawInitial);
-		System.out.println("Current: " + imuYaw);
-		System.out.println("Right: " + rightCount);
-		System.out.println("Left: " + leftCount);
-			if(leftCount <= length && rightCount < length) {	
-				if (imuYaw >= imuYawInitial - 1 && imuYaw <= imuYawInitial + 1) { 
-					leftspeed = .2;
-					rightspeed = .2;		//Make this change testing thing a method because we use it several times
+		double leftCount = leftEncoder.get(); //set double left count as the current left encoder county
+		double rightCount = rightEncoder.get(); //set right count as the current right encoder count
+		System.out.println("Initial: " + imuYawInitial); //print the inital added to imuYawInitial
+		System.out.println("Current: " + imuYaw); //pring current + imu yaw
+		System.out.println("Right: " + rightCount); // print right + right county
+		System.out.println("Left: " + leftCount); // print left + left count
+			if(leftCount <= length && rightCount < length) {	//if left Count is less than or equal to and right count is less than length
+				if (imuYaw >= imuYawInitial - 1 && imuYaw <= imuYawInitial + 1) { //then if imu yaw is greater than or equal to initial yaw -1 and imu yaw is less than or equal to initial yaw + 1
+					leftspeed = .2; //set left speed to 20%
+					rightspeed = .2; //set right speed to 20%		//Make this change testing thing a method because we use it several times
 				}
-				else if (imuYaw >= imuYawInitial + 1) {
-					leftspeed = .15;
+				else if (imuYaw >= imuYawInitial + 1) { //if not then if imu yaw is greater than or eqaul to initial yaw + 1
+					leftspeed = .15; //then set left speed at 15%
 					
 				}
-				else if (imuYaw <= imuYawInitial - 1) {
-					rightspeed = .15;
+				else if (imuYaw <= imuYawInitial - 1) { // if not then if imu yaw is less than initial yaw - 1
+					rightspeed = .15; //then set right speed at 15%
 				}
-				if (leftspeed >= 0.2) {
-					leftspeed = 0.2;
+				if (leftspeed >= 0.2) { //if left speed is greater than or equal to 20%
+					leftspeed = 0.2; // then make left speed 20%
 				}
-				if (rightspeed >= 0.2) {
-					rightspeed = 0.2;
+				if (rightspeed >= 0.2) { // if right speed is greater than or equal to 20%
+					rightspeed = 0.2; //then set right speed at 20%
 				}
-				leftMotor1.set(ControlMode.PercentOutput, -leftspeed);
-				leftMotor2.set(ControlMode.PercentOutput, -leftspeed);
+				leftMotor1.set(ControlMode.PercentOutput, -leftspeed); //set left motor 1 to negative left speed
+				leftMotor2.set(ControlMode.PercentOutput, -leftspeed); //set left motor 2 to negative left speed
 			
-				rightMotor1.set(ControlMode.PercentOutput, rightspeed);
-				rightMotor2.set(ControlMode.PercentOutput, rightspeed);
+				rightMotor1.set(ControlMode.PercentOutput, rightspeed); //set right motor 1 as right speed
+				rightMotor2.set(ControlMode.PercentOutput, rightspeed); // set right motor 2 as right speed
 				 
 			}
-			else {
-				leftMotor1.set(ControlMode.PercentOutput, 0);
-				leftMotor2.set(ControlMode.PercentOutput, 0);
+			else { // if not
+				leftMotor1.set(ControlMode.PercentOutput, 0); //set left motor at 0%
+				leftMotor2.set(ControlMode.PercentOutput, 0);//set left motor at 0%
 				
-				rightMotor1.set(ControlMode.PercentOutput, 0);
-				rightMotor2.set(ControlMode.PercentOutput, 0);
+				rightMotor1.set(ControlMode.PercentOutput, 0);//set right motor at 0%
+				rightMotor2.set(ControlMode.PercentOutput, 0);//set right motor at 0%
 				
-				Counter ++;
+				Counter ++; 
 				
-				leftEncoder.reset();
-				rightEncoder.reset();
-				i = 0;
+				leftEncoder.reset(); //reset left encoder
+				rightEncoder.reset(); // reset right encoder
+				i = 0; //set i as 0
 			}
 		
 		  }
